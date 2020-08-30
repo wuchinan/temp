@@ -1,0 +1,102 @@
+Sub bmfp()
+
+Dim foundbm1 As Range
+Dim foundbm2 As Range
+Dim bm1sum1 As Integer
+Dim bm1sum2 As Integer
+Dim bm1sum3 As Integer
+Dim cl As Integer 'column long
+Dim startrow As Integer, endrow As Integer
+Dim c As Integer, r As Integer
+Dim foundbm1c As Integer
+Dim i As Integer, j As Integer, k As Integer, z As Integer
+Dim prchange As Integer, nchange As Integer, nrun As Integer, bmmove As Integer
+
+
+
+startrow = 2
+endrow = 11
+prchange = 0
+nchange = 0
+nrun = 1100
+bmmove = nrun + nchange + prchange
+bm1sum2 = 0
+
+i = 1
+j = 0
+k = 1
+z = 0
+
+
+
+
+Set foundbm1 = Cells.Find("BM1")
+Set foundbm2 = Cells.Find("BM2")
+'Set bm1startrow = Cells.Find("BM1").Offset(startrow, 0)
+
+foundbm1c = foundbm1.Column
+
+
+
+y1 = foundbm2.Column - foundbm1c
+'y2 = (foundbm1.End(xlToRight).Columns.Column - foundbm2.Column - 1)
+
+Range(Cells(startrow + 1, foundbm1c), Cells(startrow + endrow, foundbm1.End(xlToRight).Columns.Column)).ClearContents
+
+For c = 1 To y1
+j = 0
+bm1sum1 = foundbm1.Offset(startrow + endrow, c - 1) - bm1sum2
+'MsgBox foundbm1.Offset(startrow + endrow, c - 1)
+
+    For r = i To endrow
+       
+        If bm1sum1 >= 0 Then
+        
+            If bm1sum1 >= bmmove Then
+                Cells(startrow + r, c + foundbm1c - 1) = bmmove
+                bm1sum1 = bm1sum1 - bmmove
+                
+            Else
+                Cells(startrow + r, c + foundbm1c - 1) = bm1sum1
+                
+                bm1sum2 = (bmmove - bm1sum1)
+                 
+                bm1sum1 = bm1sum1 - bmmove
+                
+                            
+                    If foundbm1.Offset(startrow + endrow, c) >= bm1sum2 Then
+                    
+                        Cells(startrow + r, c + foundbm1c - 1 + 1) = bm1sum2
+                        'MsgBox bm1sum2
+                        
+
+                        
+                        
+                        
+                    Else
+                        Cells(startrow + r, c + foundbm1c - 1 + 1) = foundbm1.Offset(startrow + endrow, c)
+                        bm1sum2 = foundbm1.Offset(startrow + endrow, c)
+                        'Exit For
+                        'MsgBox foundbm1.Offset(startrow + endrow, c)
+                        
+                         
+                    End If
+
+            
+            End If
+            j = j + 1
+
+        Else
+            Exit For
+                        
+                
+        End If
+    
+    Next r
+    k = k + j
+    
+    i = k
+  
+Next c
+
+End Sub
