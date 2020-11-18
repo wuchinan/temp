@@ -1,0 +1,26 @@
+First Method
+
+Application.OnTime "05:00:00", "task_sub"
+End Sub
+
+Sub task_sub()
+a = 5
+b = 6
+c = 7
+MsgBox (a + b + c)
+
+scheduler
+End Sub
+
+
+Second Method
+
+
+Sub task_sub_second_method()
+a = 5
+b = 6
+c = 7
+MsgBox (a + b + c)
+
+Application.OnTime "05:00:00", "task_sub_second_method"
+End Sub
