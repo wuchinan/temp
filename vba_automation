@@ -24,3 +24,9 @@ MsgBox (a + b + c)
 
 Application.OnTime "05:00:00", "task_sub_second_method"
 End Sub
+
+
+
+Scheduling Macros in Excel With Application.OnTime
+
+https://www.myonlinetraininghub.com/scheduling-macros-in-excel-with-application-ontime
